@@ -1,0 +1,257 @@
+/* =====================
+   VARIÁVEIS & RESET
+   ===================== */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  --cor-fundo: #0d0d0d;
+  --cor-painel: #1a1207;
+  --cor-borda: #8b6914;
+  --cor-texto: #d4b483;
+  --cor-destaque: #c0392b;
+  --cor-texto-fraco: #7a6040;
+  --cor-primeira-linha: #533d04;
+
+  --fonte-titulo: 'Cinzel', serif;
+  --fonte-corpo: 'Crimson Text', serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+main {
+  padding-top: 3rem;
+  display: block;
+  /* Espaço para o header fixo */
+}
+
+body {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* =====================
+   HEADER & NAV
+   ===================== */
+header {
+  background-color: var(--cor-painel);
+  border-bottom: 2px solid var(--cor-borda);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+header h1 {
+  font-family: var(--fonte-titulo);
+  font-size: 2.8rem;
+  color: var(--cor-borda);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-shadow: #0d0d0d 2px 2px 4px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+nav li:has(a:hover) {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
+nav a {
+  font-family: var(--fonte-titulo);
+  color: var(--cor-texto);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  position: relative;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    width: 0;
+    height: 0.2rem;
+    background: var(--cor-destaque);
+    transition: all 300ms ease-in-out;
+  }
+
+  &:hover::after {
+    width: 100%;
+    left: 0%;
+  }
+}
+
+  nav a:hover {
+    color: var(--cor-destaque);
+    transform: scale(1.2);
+  }
+
+  section {
+    padding: 2rem;
+    margin: 10rem auto;
+    max-width: 1200px;
+    background-color: var(--cor-painel);
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    scroll-margin-top: 11rem;
+    @media (max-width: 768px) {
+      max-width: 350px;
+    }
+  }
+
+  section.visivel {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  section h2 {
+    font-family: var(--fonte-titulo);
+    font-size: 2rem;
+    color: var(--cor-borda);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+
+  section p {
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--cor-texto-fraco);
+  }
+
+
+  section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    text-align: center;
+
+    tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  section table th,
+  section table td {
+    padding: 0.75rem;
+    border: 1px solid var(--cor-borda);
+  }
+
+  section table th {
+    background-color: var(--cor-primeira-linha);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .hall-grid {
+    display: grid;
+    border-color: var(--cor-borda);
+    background-color: var(--cor-fundo);
+  }
+
+  .hall-grid h3 {
+    text-align: center;
+  }
+
+  .swiper {
+    width: 100%;
+    height: 200px;
+  }
+
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: #333;
+    color: #fff;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .lightbox {
+    display: flex;
+    /* sempre flex, mas invisível */
+    opacity: 0;
+    pointer-events: none;
+    /* não clicável quando invisível */
+    transition: opacity 0.3s ease;
+    position: fixed;
+    /* fica por cima de TUDO */
+    inset: 0;
+    /* ocupa a tela inteira */
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .lightbox.ativo {
+    opacity: 1;
+    pointer-events: all;
+    /* só aparece quando a classe .ativo é adicionada */
+  }
+
+  .lightbox img {
+    max-width: 90%;
+    max-height: 75vh;
+    border: 2px solid var(--cor-borda);
+    border-radius: 4px;
+    min-width: 750px;
+    min-height: 500px;
+  }
+
+  .lightbox p {
+    margin-top: 1rem;
+    font-family: var(--fonte-titulo);
+    color: var(--cor-texto);
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .fechar-lightbox {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    font-size: 2rem;
+    color: var(--cor-borda);
+    cursor: pointer;
+  }
+
+  .fechar-lightbox:hover {
+    color: var(--cor-destaque);  
+  }
+
