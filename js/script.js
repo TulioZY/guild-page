@@ -41,7 +41,7 @@ const swiperMembros = new Swiper(".swiper-membros", {
   },
 
   autoplay: {
-    delay: 10000,
+    delay: 15000,
     disableOnInteraction: false,
   },
 });
