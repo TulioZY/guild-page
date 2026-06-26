@@ -45,6 +45,7 @@ body {
    ===================== */
 header {
   background-color: var(--cor-painel);
+  transition: background-color 0.3s ease;
   border-bottom: 2px solid var(--cor-borda);
   padding: 1.5rem 2rem;
   text-align: center;
@@ -53,6 +54,10 @@ header {
   top: 0;
   left: 0;
   z-index: 10;
+}
+
+header.scrolled {
+  background-color: rgba(26, 18, 7, 0.6); /* cor-painel com transparência */
 }
 
 header h1 {
@@ -156,28 +161,6 @@ nav a {
   }
 
 
-  section table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-    text-align: center;
-
-    tr:nth-child(even) {
-      background-color: rgba(255, 255, 255, 0.05);
-    }
-  }
-
-  section table th,
-  section table td {
-    padding: 0.75rem;
-    border: 1px solid var(--cor-borda);
-  }
-
-  section table th {
-    background-color: var(--cor-primeira-linha);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
 
   .hall-grid {
     display: grid;
@@ -191,16 +174,32 @@ nav a {
 
   .swiper {
     width: 100%;
-    height: 200px;
   }
 
-  .swiper-slide {
+  .swiper-galeria {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 24px;
     background: #333;
     color: #fff;
+    height: 200px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .swiper-eventos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: #333;
+    color: #fff;
+    height: 200px;
 
     img {
       width: 100%;
@@ -264,3 +263,106 @@ nav a {
     color: var(--cor-destaque);  
   }
 
+  body {
+  background-image: url('../img/background.png');
+  background-size: cover;      /* cobre sem deformar */
+  background-position: center; /* centraliza */
+  background-repeat: no-repeat;
+}
+
+
+.swiper-membros {
+  padding: 2rem 0;
+}
+
+.card-membro {
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  height: auto;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  opacity: 0.4;                    /* cards laterais escurecidos */
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.swiper-slide-active.card-membro {
+  opacity: 1;                      /* card central em destaque */
+  transform: scale(1);
+}
+
+.card-membro h3 {
+  font-family: var(--fonte-titulo);
+  color: var(--cor-borda);
+  margin-bottom: 0.5rem;
+}
+
+.card-membro h3 span {
+  font-size: 0.8rem;
+  color: var(--cor-texto-fraco);
+}
+
+.card-membro .vocacao {
+  color: var(--cor-destaque);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.card-membro .level {
+  color: var(--cor-borda);
+  font-size: 0.9rem;
+  margin: 0.3rem 0;
+}
+
+.card-membro .descricao {
+  color: var(--cor-texto);
+  font-size: 0.95rem;
+  margin-top: 0.75rem;
+  overflow: visible;
+}
+
+.card-membro .apelido {
+  color: var(--cor-texto-fraco);
+  font-size: 0.85rem;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+
+
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  nav ul {
+    flex-wrap: wrap;      /* quebra em múltiplas linhas */
+    gap: 0.8rem;
+    justify-content: center;
+  }
+
+  nav a {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .lightbox img {
+    min-width: unset;     /* remove o mínimo forçado */
+    min-height: unset;
+    max-width: 95vw;      /* nunca passa da largura da tela */
+    max-height: 60vh;
+  }
+
+  .lightbox {
+    padding: 1rem;
+  }
+}

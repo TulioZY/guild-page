@@ -1,23 +1,78 @@
-const swiper = new Swiper(".swiper", {
+const swiper = new Swiper(".swiper-galeria", {
   slidesPerView: 3,
+  breakpoints: {
+    0:    { slidesPerView: 1 },  // mobile
+    768:  { slidesPerView: 2 },  // tablet
+    1024: { slidesPerView: 3 },  // desktop
+  },
+  spaceBetween: 20,
+
+  loop: true,
+
+  navigation: {
+    nextEl: ".swiper-galeria .swiper-button-next",
+    prevEl: ".swiper-galeria .swiper-button-prev",
+  },
+  pagination: {
+    el: ".swiper-galeria .swiper-pagination",
+    clickable: true,
+  },
+
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
+});
+
+const swiperMembros = new Swiper(".swiper-membros", {
+  slidesPerView: 3,
+  breakpoints: {
+    0:    { slidesPerView: 1 },  // mobile
+    768:  { slidesPerView: 2 },  // tablet
+    1024: { slidesPerView: 3 },  // desktop
+  },
+  centeredSlides: true,    // card central em destaque
+  spaceBetween: 30,
+  loop: true,
+
+  navigation: {
+    nextEl: ".swiper-membros .swiper-button-next",
+    prevEl: ".swiper-membros .swiper-button-prev",
+  },
+
+  autoplay: {
+    delay: 10000,
+    disableOnInteraction: false,
+  },
+});
+
+
+
+const swiperEventos = new Swiper(".swiper-eventos", {
+  slidesPerView: 3,
+  breakpoints: {
+    0:    { slidesPerView: 1 },  // mobile
+    768:  { slidesPerView: 2 },  // tablet
+    1024: { slidesPerView: 3 },  // desktop
+  },
   spaceBetween: 20,
 
   loop: true,
 
   pagination: {
-    el: ".swiper-pagination",
+    el: ".swiper-eventos .swiper-pagination",
     clickable: true,
   },
 
   navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
+    nextEl: ".swiper-eventos .swiper-button-next",
+    prevEl: ".swiper-eventos .swiper-button-prev",
   },
 
 
 
   autoplay: {
-    delay: 5000,
+    delay: 6000,
     disableOnInteraction: false,
   },
 });
@@ -61,3 +116,15 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('section').forEach(section => {
   observer.observe(section);
 });
+
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('header');
+  
+  if (window.scrollY > 50) { // 50px scrollados = ativa
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
+
+
